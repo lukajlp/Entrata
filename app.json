@@ -3,8 +3,7 @@
     "name": "Entrata",
     "slug": "Entrata",
     "version": "1.0.0",
-
-    "scheme": "Entrata",
+    "scheme": "entrata",
     "web": {
       "bundler": "metro",
       "output": "static",
@@ -21,28 +20,33 @@
     ],
     "experiments": {
       "typedRoutes": true,
-
       "tsconfigPaths": true
     },
-
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-
     "userInterfaceStyle": "light",
-
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.lukajlp.Entrata"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
+      },
+      "package": "com.lukajlp.Entrata"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "7277e002-a270-42e9-90ef-927e59f126eb"
       }
     }
   }
