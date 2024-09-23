@@ -1,24 +1,42 @@
-import { forwardRef } from 'react';
-import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
+import clsx from 'clsx';
+import { ActivityIndicator, Pressable, PressableProps, Text } from 'react-native';
 
 type ButtonProps = {
-  title: string;
-} & TouchableOpacityProps;
+  title?: string;
+  isLoading?: boolean;
+  backgroundColor: string;
+  textColor?: string;
+  size: string;
+  borderRadius: string;
+  font?: string;
+} & PressableProps;
 
-export const Button = forwardRef<TouchableOpacity, ButtonProps>(
-  ({ title, ...touchableProps }, ref) => {
-    return (
-      <TouchableOpacity
-        ref={ref}
-        {...touchableProps}
-        className={`${styles.button} ${touchableProps.className}`}>
-        <Text className={styles.buttonText}>{title}</Text>
-      </TouchableOpacity>
-    );
-  }
-);
+export const Button = ({
+  title,
+  isLoading = false,
+  backgroundColor,
+  textColor,
+  size,
+  borderRadius,
+  font,
+  ...rest
+}: ButtonProps) => {
+  return (
+    <Pressable
+      disabled={isLoading}
+      style={{ backgroundColor }}
+      className={clsx(styles.button, size, borderRadius)}
+      {...rest}>
+      {isLoading ? (
+        <ActivityIndicator size="large" color="#fff" />
+      ) : (
+        title && <Text className={clsx(styles.buttonText, font)}>{title}</Text>
+      )}
+    </Pressable>
+  );
+};
 
 const styles = {
-  button: 'items-center bg-indigo-500 rounded-[28px] shadow-md p-4',
-  buttonText: 'text-white text-lg font-semibold text-center',
+  button: 'items-center justify-center',
+  buttonText: 'text-white text-center',
 };
